@@ -37,15 +37,17 @@ class CreateFileJob implements ShouldQueue
     {
         $lineNo = $this->lineNo;
         $content = '';
+        print $this->no . '#' . ($this->no * $this->lineNo);
         for ($i = 0; $i < $lineNo; $i++) {
-            $line = $i;
+            $line = ($this->no * $this->lineNo) + $i;
             for ($j = 0; $j < 15; $j++) {
                 $line .= ';' . Str::random(10);
             }
             $line .= "\n";
             $content .= $line;
+
+            if ($i === $lineNo-1) print '#' . ($this->no * $this->lineNo + $i) . "\n";
         }
-        print $this->no;
 
         //Storage::append('file.csv', $content);
 
