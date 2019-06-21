@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script type="text/javascript">
+        var somePackage = {};
+        somePackage.connect = function()  {
+            var ws = new WebSocket('ws://localhost:6001/app/wttTXkwAPaP8pu2M25MFNv2u');
+            ws.onopen = function() {
+                console.log('ws connected');
+                somePackage.ws = ws;
+                ws.send(JSON.stringify({"event":"pusher:subscribe","data":{"auth":"wttTXkwAPaP8pu2M25MFNv2u:4591d67f71ceb7d37a9942df1772c34750b726f67e62b8e77e2d954a7e882f52","channel":"myChannel"}}));
+            };
+            ws.onerror = function() {
+                console.log('ws error');
+            };
+            ws.onclose = function() {
+                console.log('ws closed');
+            };
+            ws.onmessage = function(msgevent) {
+                var msg = JSON.parse(msgevent.data);
+                console.log('in :', msg);
+                // message received, do something
+            };
+        };
+
+        somePackage.send = function(msg) {
+            if (!this.ws) {
+                console.log('no connection');
+                return;
+            }
+            console.log('out:', msg)
+            this.ws.send(window.JSON.stringify(msg));
+        };
+    </script>
 </head>
 <body>
+    <script type="text/javascript">
+        somePackage.connect();
+    </script>
 
+    <button value="Send" onclick="somePackage.send({'event': 'client-msg', 'channel' : 'myChannel', 'data': 'ASDFGH'});"; />
 </body>
 </html>
