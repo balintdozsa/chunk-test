@@ -33,6 +33,6 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['channel' => 'myChannel'];
+        return ['myChannel'];
     }
 }
