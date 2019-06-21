@@ -38,6 +38,8 @@ class SendMsg extends Command
      */
     public function handle()
     {
-        broadcast(new MessageSent('Test Message'));
+        for ($i = 0; $i < 10; $i++) {
+            broadcast(new MessageSent('Test Message ' . ($i+1)));
+        }
     }
 }
