@@ -38,7 +38,6 @@ class SendMsg extends Command
      */
     public function handle()
     {
-        //event(new NewMessage('ASD'));
         broadcast(new MessageSent('Test Message'));
     }
 }
