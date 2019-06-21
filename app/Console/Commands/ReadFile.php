@@ -41,8 +41,8 @@ class ReadFile extends Command
         $handle = fopen($path, 'r');
 
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-            $num = count($data);
-            print $data[0]."\n";
+            //$num = count($data);
+            //print $data[0]."\n";
         }
     }
 }
