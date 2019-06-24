@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Events\MessageSent;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Redis;
 
 class SendMsg extends Command
 {
@@ -38,8 +39,19 @@ class SendMsg extends Command
      */
     public function handle()
     {
-        for ($i = 0; $i < 10; $i++) {
-            event(new MessageSent('Test Message ' . ($i+1)));
-        }
+        //for ($i = 0; $i < 10; $i++) {
+        //    event(new MessageSent('Test Message ' . ($i+1)));
+        //}
+        //Redis::set('asd', 'fgh');
+        $data = [
+            'event' => 'MessageSent',
+            'data' => [
+                'message' => 'JohnDoe'
+            ]
+        ];
+
+        Redis::publish('test-channel', json_encode($data));
+
+        return 'Done';
     }
 }
