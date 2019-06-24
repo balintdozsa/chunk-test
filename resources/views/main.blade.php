@@ -29,7 +29,7 @@
     socket.on('server-message',function(data) {
         console.log('Received a message from the server!',data);
     });
-    socket.on('laravel_database_test-channel:MessageSent',function(data) {
+    socket.on('laravel_database_test-channel:App\\Events\\MessageSent',function(data) {
         console.log('Received a message from the server!',data);
     });
     //socket.emit('subscribe', 'laravel_database_test-channel:MessageSent');
