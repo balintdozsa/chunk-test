@@ -39,7 +39,7 @@ class SendMsg extends Command
     public function handle()
     {
         for ($i = 0; $i < 10; $i++) {
-            broadcast(new MessageSent('Test Message ' . ($i+1)));
+            event(new MessageSent('Test Message ' . ($i+1)));
         }
     }
 }
