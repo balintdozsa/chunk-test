@@ -11,7 +11,7 @@
             ws.onopen = function() {
                 console.log('ws connected');
                 somePackage.ws = ws;
-                ws.send(JSON.stringify({"event":"pusher:subscribe","data":{"auth":"wttTXkwAPaP8pu2M25MFNv2u:4591d67f71ceb7d37a9942df1772c34750b726f67e62b8e77e2d954a7e882f52","channel":"myChannel"}}));
+                ws.send(JSON.stringify({"event":"pusher:subscribe","data":{"auth":"wttTXkwAPaP8pu2M25MFNv2u:4591d67f71ceb7d37a9942df1772c34750b726f67e62b8e77e2d954a7e882f52","channel":"test-channel"}}));
             };
             ws.onerror = function() {
                 console.log('ws error');
@@ -41,6 +41,6 @@
         somePackage.connect();
     </script>
 
-    <button value="Send" onclick="somePackage.send({'event': 'client-msg', 'channel' : 'myChannel', 'data': 'ASDFGH'});"; />
+    <button value="Send" onclick="somePackage.send({'event': 'client-msg', 'channel' : 'test-channel', 'data': 'ASDFGH'});"; />
 </body>
 </html>
