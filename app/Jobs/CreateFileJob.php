@@ -39,7 +39,7 @@ class CreateFileJob implements ShouldQueue
         $content = '';
         print $this->no . '#' . ($this->no * $this->lineNo);
 
-        $random_data = ['a000','b000','c000','d000','e000'];
+        $random_data = ['a000','b000','c000','d000','e000','f000','g000','h000','i000','j000','k000','l000','m000'];
 
         for ($i = 0; $i < $lineNo; $i++) {
             $line = ($this->no * $this->lineNo) + $i;
@@ -49,7 +49,7 @@ class CreateFileJob implements ShouldQueue
                 if ($j === 0) {
                     $line .= $random_data[array_rand($random_data)];
                 } else if ($j === 1) {
-                    $line .= rand(1970,2000);
+                    $line .= rand(1900,2019);
                 } else {
                     $line .= Str::random(10);
                 }

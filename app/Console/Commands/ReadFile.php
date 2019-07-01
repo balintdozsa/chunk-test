@@ -40,9 +40,24 @@ class ReadFile extends Command
         $path = storage_path('app/file.csv');
         $handle = fopen($path, 'r');
 
+        print memory_get_usage() / 1024 / 1024;
+
+        $aggr = [];
+        $aggr['type'] = [];
+        $aggr['year'] = [];
+
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
             //$num = count($data);
             //print $data[0]."\n";
+
+            !isset($aggr['type'][$data[1]]) ? $aggr['type'][$data[1]] = 0 : null;
+            $aggr['type'][$data[1]]++;
+
+            !isset($aggr['year'][$data[2]]) ? $aggr['year'][$data[2]] = 0 : null;
+            $aggr['year'][$data[2]]++;
         }
+
+        print memory_get_usage() / 1024 / 1024;
+        print_r($aggr);
     }
 }
